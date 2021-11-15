@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
 
     GameObject waitText;
 
-    GameObject loginState, mainMenuState, playingState, waitingForMatchState;
+    GameObject loginState, mainMenuState, playingState, waitingForMatchState, replayState;
 
 
     void Start()
@@ -47,11 +47,13 @@ public class UIManager : MonoBehaviour
             else if (go.name == "State-Login")
                 loginState = go;
             else if (go.name == "State-MainMenu")
-                mainMenuState= go;
+                mainMenuState = go;
             else if (go.name == "State-Playing")
                 playingState = go;
             else if (go.name == "State-WaitingForMatch")
                 waitingForMatchState = go;
+            else if (go.name == "State-Replay")
+                replayState = go;
 
         }
 
@@ -121,6 +123,7 @@ public class UIManager : MonoBehaviour
         mainMenuState.SetActive(false);
         playingState.SetActive(false);
         waitingForMatchState.SetActive(false);
+        replayState.SetActive(false);
 
         //submitButton.SetActive(false);
         //userNameInput.SetActive(false);
@@ -155,6 +158,10 @@ public class UIManager : MonoBehaviour
             playingState.SetActive(true);
             //placeholderGameButton.SetActive(true);
         }
+        else if (newState == GameStates.Replay)
+        {
+            replayState.SetActive(true);
+        }
 
     }
 
@@ -167,5 +174,6 @@ public static class GameStates
     public const int MainMenu           = 2;
     public const int WaitingForMatch    = 3;
     public const int PlayingTicTacToe   = 4;
+    public const int Replay             = 5;
 
 }

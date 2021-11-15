@@ -17,6 +17,8 @@ public class NetworkedClient : MonoBehaviour
     bool isConnected = false;
     int ourClientID;
 
+    public string turnList;
+
     GameObject uiManager; 
 
     void Start()
@@ -148,11 +150,16 @@ public class NetworkedClient : MonoBehaviour
             Debug.Log("RECEIVED A MESSAGE");
             GameObject.Find("ChatManager").GetComponent<ChatButton>().OpponentChatted(csv[1]);
         }
-        //else if (signifier == ServerToClientSignifiers.ReplaySent)
-        //{
+        else if (signifier == ServerToClientSignifiers.ReplaySent)
+        {
+            for (int i = 2; i < csv.Length; i += 3)
+            {
+                turnList += csv[i] + "," + csv[i + 1] + ",";
+            }
+            Debug.Log("TURNLIST SAYS: " + turnList);
+            uiManager.GetComponent<UIManager>().ChangeGameState(GameStates.Replay);
 
-
-        //}
+        }
     }
 
     public bool IsConnected()
