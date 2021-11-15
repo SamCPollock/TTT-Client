@@ -19,7 +19,6 @@ public class NetworkedClient : MonoBehaviour
 
     GameObject uiManager; 
 
-    // Start is called before the first frame update
     void Start()
     {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
@@ -34,7 +33,6 @@ public class NetworkedClient : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 

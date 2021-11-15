@@ -11,8 +11,11 @@ public class UIManager : MonoBehaviour
 
     GameObject findGameRoomButton, placeholderGameButton;
 
+    GameObject waitText;
 
-    // Start is called before the first frame update
+    GameObject loginState, mainMenuState, playingState, waitingForMatchState;
+
+
     void Start()
     {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
@@ -37,6 +40,19 @@ public class UIManager : MonoBehaviour
             else if (go.name == "PlaceholderGameButton")
                 placeholderGameButton = go;
 
+            else if (go.name == "WaitText")
+                waitText = go;
+
+            // States
+            else if (go.name == "State-Login")
+                loginState = go;
+            else if (go.name == "State-MainMenu")
+                mainMenuState= go;
+            else if (go.name == "State-Playing")
+                playingState = go;
+            else if (go.name == "State-WaitingForMatch")
+                waitingForMatchState = go;
+
         }
 
         submitButton.GetComponent<Button>().onClick.AddListener(SubmitButtonPressed);
@@ -47,7 +63,10 @@ public class UIManager : MonoBehaviour
         findGameRoomButton.GetComponent<Button>().onClick.AddListener(FindGameRoomButtonPressed);
         placeholderGameButton.GetComponent<Button>().onClick.AddListener(PlaceholderGameButtonPressed);
 
+        // Set initial game state
         ChangeGameState(GameStates.Login);
+        //ChangeGameState(GameStates.PlayingTicTacToe);
+
 
     }
 
@@ -97,34 +116,44 @@ public class UIManager : MonoBehaviour
     }
 
     public void ChangeGameState(int newState)
-    { 
-        submitButton.SetActive(false);
-        userNameInput.SetActive(false);
-        passwordInput.SetActive(false);
-        createToggle.SetActive(false);
-        loginToggle.SetActive(false);
-        findGameRoomButton.SetActive(false);
-        placeholderGameButton.SetActive(false);
+    {
+        loginState.SetActive(false);
+        mainMenuState.SetActive(false);
+        playingState.SetActive(false);
+        waitingForMatchState.SetActive(false);
+
+        //submitButton.SetActive(false);
+        //userNameInput.SetActive(false);
+        //passwordInput.SetActive(false);
+        //createToggle.SetActive(false);
+        //loginToggle.SetActive(false);
+        //findGameRoomButton.SetActive(false);
+        //placeholderGameButton.SetActive(false);
+        //waitText.SetActive(false);
 
         if (newState == GameStates.Login)
         {
-            submitButton.SetActive(true);
-            userNameInput.SetActive(true);
-            passwordInput.SetActive(true);
-            createToggle.SetActive(true);
-            loginToggle.SetActive(true);
+            loginState.SetActive(true);
+            //submitButton.SetActive(true);
+            //userNameInput.SetActive(true);
+            //passwordInput.SetActive(true);
+            //createToggle.SetActive(true);
+            //loginToggle.SetActive(true);
         }
         else if (newState == GameStates.MainMenu)
         {
-            findGameRoomButton.SetActive(true);
+            mainMenuState.SetActive(true);
+            //findGameRoomButton.SetActive(true);
         }
         else if (newState == GameStates.WaitingForMatch)
         {
-
+            waitingForMatchState.SetActive(true);
+            //waitText.SetActive(true);
         }
         else if (newState == GameStates.PlayingTicTacToe)
         {
-            placeholderGameButton.SetActive(true);
+            playingState.SetActive(true);
+            //placeholderGameButton.SetActive(true);
         }
 
     }
