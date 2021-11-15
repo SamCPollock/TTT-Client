@@ -143,6 +143,11 @@ public class NetworkedClient : MonoBehaviour
             Debug.Log("OPPONENT SENT A PLAY");
             GameObject.Find("GameController").GetComponent<GameController>().MarkButton(int.Parse(csv[1]), int.Parse(csv[2]));
         }
+        else if (signifier == ServerToClientSignifiers.ChatSentToClient)
+        {
+            Debug.Log("RECEIVED A MESSAGE");
+            GameObject.Find("ChatManager").GetComponent<ChatButton>().OpponentChatted(csv[1]);
+        }
 
     }
 
@@ -160,7 +165,7 @@ public static class ClientToServerSignifiers
     public const int LoginAttempt = 2;
     public const int AddToGameRoomQueue = 3;
     public const int TicTacToePlay = 4;
-
+    public const int ChatSentToServer = 5;
 
 
 }
@@ -175,6 +180,7 @@ public static class ServerToClientSignifiers
 
     public const int GameRoomStarted = 5;
     public const int OpponentPlayed = 6;
+    public const int ChatSentToClient = 7;
 
 
 }
