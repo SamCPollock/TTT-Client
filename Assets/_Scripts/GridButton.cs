@@ -20,10 +20,12 @@ public class GridButton : MonoBehaviour
 
     public void SetSpace()
     {
-        buttonText.text = gameController.GetPlayerSide();
-        button.interactable = false;
-        gameController.TrackButtonPressed(row, column);
-        //gameController.EndTurn();
-        
+        if (gameController.isYourTurn)
+        {
+            buttonText.text = gameController.GetPlayerSide();
+            button.interactable = false;
+            gameController.TrackButtonPressed(row, column);
+            gameController.EndTurn();
+        }
     }    
 }

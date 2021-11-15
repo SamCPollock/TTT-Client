@@ -7,7 +7,8 @@ public class GameController : MonoBehaviour
 {
     public Text[] buttonList;
 
-    private string playerSide;
+    public string playerSide;
+    public bool isYourTurn;
 
     GameObject networkedClient;
 
@@ -15,8 +16,16 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         SetGameControllerReferencesOnButtons();
-        playerSide = "X";
+
         networkedClient = GameObject.Find("Client");
+        if (playerSide == "X")
+        {
+            isYourTurn = true;
+        }
+        else
+        {
+            isYourTurn = false;
+        }
     }
 
     void SetGameControllerReferencesOnButtons()
@@ -98,6 +107,7 @@ public class GameController : MonoBehaviour
 
 
         ChangeSides();
+        isYourTurn = !isYourTurn;
 
 
     }

@@ -132,6 +132,11 @@ public class NetworkedClient : MonoBehaviour
         else if (signifier == ServerToClientSignifiers.GameRoomStarted)
         {
             uiManager.GetComponent<UIManager>().ChangeGameState(GameStates.PlayingTicTacToe);
+            GameObject.Find("GameController").GetComponent<GameController>().playerSide = csv[1];
+            if (csv[1] == "X")
+            {
+                GameObject.Find("GameController").GetComponent<GameController>().isYourTurn = true;
+            }
         }
         else if (signifier == ServerToClientSignifiers.OpponentPlayed)
         {
