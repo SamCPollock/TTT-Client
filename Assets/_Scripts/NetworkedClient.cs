@@ -148,7 +148,11 @@ public class NetworkedClient : MonoBehaviour
             Debug.Log("RECEIVED A MESSAGE");
             GameObject.Find("ChatManager").GetComponent<ChatButton>().OpponentChatted(csv[1]);
         }
+        //else if (signifier == ServerToClientSignifiers.ReplaySent)
+        //{
 
+
+        //}
     }
 
     public bool IsConnected()
@@ -166,6 +170,7 @@ public static class ClientToServerSignifiers
     public const int AddToGameRoomQueue = 3;
     public const int TicTacToePlay = 4;
     public const int ChatSentToServer = 5;
+    public const int RequestReplay = 6;
 
 
 }
@@ -181,7 +186,7 @@ public static class ServerToClientSignifiers
     public const int GameRoomStarted = 5;
     public const int OpponentPlayed = 6;
     public const int ChatSentToClient = 7;
-
+    public const int ReplaySent = 8;
 
 }
 

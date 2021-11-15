@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
         createToggle.GetComponent<Toggle>().onValueChanged.AddListener(CreateToggleChanged);
 
         findGameRoomButton.GetComponent<Button>().onClick.AddListener(FindGameRoomButtonPressed);
-        placeholderGameButton.GetComponent<Button>().onClick.AddListener(PlaceholderGameButtonPressed);
+        //placeholderGameButton.GetComponent<Button>().onClick.AddListener(PlaceholderGameButtonPressed);
 
         // Set initial game state
         ChangeGameState(GameStates.Login);

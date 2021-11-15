@@ -25,6 +25,12 @@ public class ChatButton : MonoBehaviour
 
     }
 
+    public void RequestReplayButtonPressed()
+    {
+        networkedClient.SendMessageToHost(ClientToServerSignifiers.RequestReplay + "");
+
+    }
+
     public void OpponentChatted(string message)
     {
         opponentChatText.text = message;
