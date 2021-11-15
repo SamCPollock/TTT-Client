@@ -136,6 +136,7 @@ public class NetworkedClient : MonoBehaviour
         else if (signifier == ServerToClientSignifiers.OpponentPlayed)
         {
             Debug.Log("OPPONENT SENT A PLAY");
+            GameObject.Find("GameController").GetComponent<GameController>().MarkButton(int.Parse(csv[1]), int.Parse(csv[2]));
         }
 
     }

@@ -23,7 +23,7 @@ public class GridButton : MonoBehaviour
         buttonText.text = gameController.GetPlayerSide();
         button.interactable = false;
         gameController.TrackButtonPressed(row, column);
-        gameController.EndTurn();
+        //gameController.EndTurn();
         
     }    
 }
