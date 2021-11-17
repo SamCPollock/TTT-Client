@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 
      GameObject networkedClient;
 
-    GameObject findGameRoomButton, placeholderGameButton;
+    GameObject findGameRoomButton, placeholderGameButton, spectateButton;
 
     GameObject waitText;
 
@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
 
             else if (go.name == "FindGameRoomButton")
                 findGameRoomButton = go;
+            else if (go.name == "SpectateButton")
+                spectateButton = go;
             else if (go.name == "PlaceholderGameButton")
                 placeholderGameButton = go;
 
@@ -64,6 +66,7 @@ public class UIManager : MonoBehaviour
 
         findGameRoomButton.GetComponent<Button>().onClick.AddListener(FindGameRoomButtonPressed);
         //placeholderGameButton.GetComponent<Button>().onClick.AddListener(PlaceholderGameButtonPressed);
+        spectateButton.GetComponent<Button>().onClick.AddListener(SpectateButtonPressed);
 
         // Set initial game state
         ChangeGameState(GameStates.Login);
@@ -108,6 +111,13 @@ public class UIManager : MonoBehaviour
     {
         networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(ClientToServerSignifiers.AddToGameRoomQueue + "");
         ChangeGameState(GameStates.WaitingForMatch);
+
+    }
+
+    private void SpectateButtonPressed()
+    {
+        networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(ClientToServerSignifiers.RequestSpectate + "");
+        ChangeGameState(GameStates.PlayingTicTacToe);
 
     }
 

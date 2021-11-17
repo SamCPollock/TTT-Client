@@ -178,6 +178,7 @@ public static class ClientToServerSignifiers
     public const int TicTacToePlay = 4;
     public const int ChatSentToServer = 5;
     public const int RequestReplay = 6;
+    public const int RequestSpectate = 7;
 
 
 }
