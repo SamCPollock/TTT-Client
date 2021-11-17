@@ -152,4 +152,17 @@ public class GameController : MonoBehaviour
         }
         EndTurn();
     }
+
+    public void ReplayMarkButton(int row, int column, string letter)
+    {
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+            if (buttonList[i].GetComponentInParent<GridButton>().row == row && buttonList[i].GetComponentInParent<GridButton>().column == column)
+            {
+                buttonList[i].text = letter;
+                buttonList[i].GetComponentInParent<Button>().interactable = false;
+            }
+        }
+        EndTurn();
+    }
 }
