@@ -45,77 +45,58 @@ public class GameController : MonoBehaviour
 
     public void EndTurn()
     {
-        // top straight victory
-        if (buttonList[0].text == playerSide && buttonList[1].text == playerSide && buttonList[2].text == playerSide
-            ||
-            buttonList[0].text == "0" && buttonList[1].text == "0" && buttonList[2].text == "0")
-        {
-            GameOver();
-        }
-        //middle straight victory
-        if (buttonList[3].text == playerSide && buttonList[4].text == playerSide && buttonList[5].text == playerSide
-            ||
-            buttonList[3].text == "0" && buttonList[4].text == "0" && buttonList[5].text == "0")
-        {
-            GameOver();
-        }
-        // bottom straight victory
-        if (buttonList[6].text == playerSide && buttonList[7].text == playerSide && buttonList[8].text == playerSide
-            ||
-            buttonList[6].text == "0" && buttonList[7].text == "0" && buttonList[8].text == "0")
-        {
-            GameOver();
-        }
 
-        // left straight victory
-        if (buttonList[0].text == playerSide && buttonList[3].text == playerSide && buttonList[6].text == playerSide
-            ||
-            buttonList[0].text == "0" && buttonList[3].text == "0" && buttonList[6].text == "0")
-        {
-            GameOver();
-        }
-        //center straight victory
-        if (buttonList[1].text == playerSide && buttonList[4].text == playerSide && buttonList[7].text == playerSide
-            ||
-            buttonList[1].text == "0" && buttonList[4].text == "0" && buttonList[7].text == "0")
-        {
-            GameOver();
-        }
-        // right straight victory
-        if (buttonList[2].text == playerSide && buttonList[5].text == playerSide && buttonList[8].text == playerSide
-            ||
-            buttonList[2].text == "0" && buttonList[5].text == "0" && buttonList[8].text == "0")
-        {
-            GameOver();
-        }
-
-        //up diagonal victory
-        if (buttonList[0].text == playerSide && buttonList[4].text == playerSide && buttonList[8].text == playerSide
-            ||
-            buttonList[0].text == "0" && buttonList[4].text == "0" && buttonList[8].text == "0")
-        {
-            GameOver();
-        }
-        // down diagonal victory
-        if (buttonList[2].text == playerSide && buttonList[4].text == playerSide && buttonList[6].text == playerSide
-            ||
-            buttonList[2].text == "0" && buttonList[4].text == "0" && buttonList[6].text == "0")
-        {
-            GameOver();
-        }
-
-
+        CheckForVictory();
 
         ChangeSides();
-        isYourTurn = !isYourTurn;
 
 
     }
 
-    void ChangeSides()
+    void CheckForVictory()
     {
-       // playerSide = (playerSide == "X") ? "0" : "X";
+        if ( // top straight victory
+           buttonList[0].text == "X" && buttonList[1].text == "X" && buttonList[2].text == "X"
+           ||
+           buttonList[0].text == "0" && buttonList[1].text == "0" && buttonList[2].text == "0"
+           || // middle straight victory
+           buttonList[3].text == "X" && buttonList[4].text == "X" && buttonList[5].text == "X"
+           ||
+           buttonList[3].text == "0" && buttonList[4].text == "0" && buttonList[5].text == "0"
+           || // bottom straight victory
+           buttonList[6].text == "X" && buttonList[7].text == "X" && buttonList[8].text == "X"
+           ||
+           buttonList[6].text == "0" && buttonList[7].text == "0" && buttonList[8].text == "0"
+           || // left straight victory
+           buttonList[0].text == "X" && buttonList[3].text == "X" && buttonList[6].text == "X"
+           ||
+           buttonList[0].text == "0" && buttonList[3].text == "0" && buttonList[6].text == "0"
+           || // center straight victory
+           buttonList[1].text == "X" && buttonList[4].text == "X" && buttonList[7].text == "X"
+           ||
+           buttonList[1].text == "0" && buttonList[4].text == "0" && buttonList[7].text == "0"
+           || // right straight victory
+           buttonList[2].text == "X" && buttonList[5].text == "X" && buttonList[8].text == "X"
+           ||
+           buttonList[2].text == "0" && buttonList[5].text == "0" && buttonList[8].text == "0"
+           || // up diagonal victory
+           buttonList[0].text == "X" && buttonList[4].text == "X" && buttonList[8].text == "X"
+           ||
+           buttonList[0].text == "0" && buttonList[4].text == "0" && buttonList[8].text == "0"
+           || // down diagonal victory
+           buttonList[2].text == "X" && buttonList[4].text == "X" && buttonList[6].text == "X"
+           ||
+           buttonList[2].text == "0" && buttonList[4].text == "0" && buttonList[6].text == "0"
+           )
+        {
+            GameOver();
+        }
     }
+    void ChangeSides() // TODO: This does nothing. 
+    {
+        isYourTurn = !isYourTurn;
+    }
+
 
     void GameOver()
     {

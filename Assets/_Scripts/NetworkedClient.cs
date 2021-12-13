@@ -32,20 +32,10 @@ public class NetworkedClient : MonoBehaviour
         }
 
             Connect();
-
     }
 
     void Update()
     {
-
-
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    SendMessageToHost(ClientToServerSignifiers.CreateAccountAttempt + "," + "AccountTest" + "," + "PasswordTest");
-        //}  else if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    SendMessageToHost(ClientToServerSignifiers.LoginAttempt + "," + "AccountTest" + "," + "PasswordTest");
-        //}
         UpdateNetworkConnection();
     }
 
@@ -126,7 +116,7 @@ public class NetworkedClient : MonoBehaviour
         string[] csv = msg.Split(',');
 
         int signifier = int.Parse(csv[0]);
-
+        
         if (signifier == ServerToClientSignifiers.LoginSuccess)
         {
             uiManager.GetComponent<UIManager>().ChangeGameState(GameStates.MainMenu);
@@ -152,6 +142,7 @@ public class NetworkedClient : MonoBehaviour
         }
         else if (signifier == ServerToClientSignifiers.ReplaySent)
         {
+            turnList = "";
             for (int i = 2; i < csv.Length; i += 3)
             {
                 turnList += csv[i] + "," + csv[i + 1] + ",";
@@ -185,6 +176,7 @@ public static class ClientToServerSignifiers
 
 public static class ServerToClientSignifiers
 {
+    // TODO: Address dangling signifiers (login failure, create account, etc) 
     public const int CreateAccountSuccess = 1;
     public const int LoginSuccess = 2;
 

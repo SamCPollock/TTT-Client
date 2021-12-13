@@ -6,7 +6,7 @@ public class NextTurnButton : MonoBehaviour
 {
     public NetworkedClient networkedClient;
     public GameController gameController;
-    int turnCount = 0;
+    public int turnCount = 0;  
 
     private void Start()
     {
@@ -16,11 +16,12 @@ public class NextTurnButton : MonoBehaviour
     public void NextButtonPressed()
     {
         string[] csv = networkedClient.turnList.Split(',');
-        //for (int i = 0; i < csv.Length; i+=2)
-        //{
-        //    gameController.MarkButton(int.Parse(csv[i]), int.Parse(csv[i+1]));
-        //}
-        gameController.ReplayMarkButton(int.Parse(csv[turnCount]), int.Parse(csv[turnCount+1]), turnCount%4 == 0 ? "X" : "0");
-        turnCount += 2;
+
+        int rowToMark = int.Parse(csv[turnCount * 2]);
+        int columnToMark = int.Parse(csv[turnCount * 2 + 1]);
+        bool isX = turnCount % 2 == 0;
+
+        gameController.ReplayMarkButton(rowToMark, columnToMark, (isX ? "X" : "0")); 
+        turnCount += 1;
     }
 }

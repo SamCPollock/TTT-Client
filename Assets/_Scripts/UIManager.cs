@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
+        // Set up object references
         foreach (GameObject go in allObjects)
         {
             if (go.name == "UsernameInput")
@@ -59,13 +60,12 @@ public class UIManager : MonoBehaviour
 
         }
 
-        submitButton.GetComponent<Button>().onClick.AddListener(SubmitButtonPressed);
+        // Set up Button Events
 
+        submitButton.GetComponent<Button>().onClick.AddListener(SubmitButtonPressed);
         loginToggle.GetComponent<Toggle>().onValueChanged.AddListener(LoginToggleChanged);
         createToggle.GetComponent<Toggle>().onValueChanged.AddListener(CreateToggleChanged);
-
         findGameRoomButton.GetComponent<Button>().onClick.AddListener(FindGameRoomButtonPressed);
-        //placeholderGameButton.GetComponent<Button>().onClick.AddListener(PlaceholderGameButtonPressed);
         spectateButton.GetComponent<Button>().onClick.AddListener(SpectateButtonPressed);
 
         // Set initial game state
@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    #region ButtonEvents
     public void SubmitButtonPressed()
     {
         string n = userNameInput.GetComponent<InputField>().text;
@@ -96,6 +97,7 @@ public class UIManager : MonoBehaviour
 
         networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(msg);
     }
+
     private void CreateToggleChanged(bool newValue)
     {
         loginToggle.GetComponent<Toggle>().SetIsOnWithoutNotify(!newValue);
@@ -126,6 +128,7 @@ public class UIManager : MonoBehaviour
         networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(ClientToServerSignifiers.TicTacToePlay + "");
 
     }
+    #endregion
 
     public void ChangeGameState(int newState)
     {
@@ -135,38 +138,21 @@ public class UIManager : MonoBehaviour
         waitingForMatchState.SetActive(false);
         replayState.SetActive(false);
 
-        //submitButton.SetActive(false);
-        //userNameInput.SetActive(false);
-        //passwordInput.SetActive(false);
-        //createToggle.SetActive(false);
-        //loginToggle.SetActive(false);
-        //findGameRoomButton.SetActive(false);
-        //placeholderGameButton.SetActive(false);
-        //waitText.SetActive(false);
-
         if (newState == GameStates.Login)
         {
             loginState.SetActive(true);
-            //submitButton.SetActive(true);
-            //userNameInput.SetActive(true);
-            //passwordInput.SetActive(true);
-            //createToggle.SetActive(true);
-            //loginToggle.SetActive(true);
         }
         else if (newState == GameStates.MainMenu)
         {
             mainMenuState.SetActive(true);
-            //findGameRoomButton.SetActive(true);
         }
         else if (newState == GameStates.WaitingForMatch)
         {
             waitingForMatchState.SetActive(true);
-            //waitText.SetActive(true);
         }
         else if (newState == GameStates.PlayingTicTacToe)
         {
             playingState.SetActive(true);
-            //placeholderGameButton.SetActive(true);
         }
         else if (newState == GameStates.Replay)
         {
